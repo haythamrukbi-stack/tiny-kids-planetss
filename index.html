@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TINY KIDS PLANET</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Global ===== */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('background.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+    }
+
+    .overlay {
+      background: rgba(255,255,255,0.9);
+      min-height: 100vh;
+    }
+
+    /* ===== Header ===== */
+    header {
+      background: linear-gradient(135deg, #ff5f6d, #ffc371);
+      color: white;
+      padding: 70px 20px 90px;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1 { font-size: 3.2rem; margin: 0; }
+    header p { font-size: 1.3rem; margin-top: 15px; }
+
+    .mascot {
+      position: absolute;
+      bottom: -20px;
+      right: 10%;
+      font-size: 6rem;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* ===== Layout ===== */
+    .container {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    section { margin-bottom: 80px; }
+
+    h2 {
+      color: #ff5f6d;
+      font-size: 2.2rem;
+      text-align: center;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 26px;
+      padding: 40px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    /* ===== Videos ===== */
+    .videos, .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .video-card, .game-card {
+      background: #fff;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+      text-align: center;
+    }
+
+    iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+    }
+
+    .info {
+      padding: 18px;
+      font-weight: 600;
+    }
+
+    /* ===== Games ===== */
+    canvas {
+      display: block;
+      margin: 10px auto;
+      background: #e0f7ff;
+      border-radius: 16px;
+    }
+
+    .game-card button {
+      margin: 8px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 40px;
+      background: linear-gradient(135deg, #36d1dc, #5b86e5);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    /* ===== Subscribe ===== */
+    .subscribe {
+      text-align: center;
+    }
+
+    .subscribe a {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff5f6d, #ffc371);
+      color: white;
+      padding: 20px 45px;
+      border-radius: 60px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    footer {
+      background: #1a1a1a;
+      color: #bbb;
+      text-align: center;
+      padding: 30px;
+    }
+
+    /* ===== Music ===== */
+    .music {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: white;
+      padding: 12px 18px;
+      border-radius: 50px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+<div class="overlay">
+
+<header>
+  <h1>TINY KIDS PLANET 🌍</h1>
+  <p>Fun • Learning • Play • Music</p>
+  <div class="mascot">🧸</div>
+</header>
+
+<div class="container">
+
+  <!-- About -->
+  <section class="card">
+    <h2>About Tiny Kids Planet</h2>
+    <p>
+      Welcome to <strong>Tiny Kids Planet</strong> 🎈<br>
+      A safe and joyful world where kids learn through songs, games,
+      cartoons and colorful animations.
+    </p>
+  </section>
+
+  <!-- Videos -->
+  <section>
+    <h2>Latest Videos</h2>
+    <div class="videos">
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/watch?v=rF5Gyju3F-w" allowfullscreen></iframe>
+        <div class="info">ABC Song 🔤</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/watch?v=LAzSShrSOaU" allowfullscreen></iframe>
+        <div class="info">Colors 🌈</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
+        <div class="info">Numbers 🔢</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Games -->
+  <section>
+    <h2>Play Mini Games 🎮</h2>
+    <div class="games">
+
+      <!-- Balloon Game -->
+      <div class="game-card">
+        <div class="info">🎈 Catch the Balloon</div>
+        <canvas id="balloonCanvas" width="260" height="200"></canvas>
+        <div class="info">Score: <span id="score">0</span></div>
+      </div>
+
+      <!-- Numbers Game 1–10 -->
+      <div class="game-card">
+        <div class="info">🔢 Learn Numbers (1–10)</div>
+        <div>
+          <button onclick="playNumber(1)">1</button>
+          <button onclick="playNumber(2)">2</button>
+          <button onclick="playNumber(3)">3</button>
+          <button onclick="playNumber(4)">4</button>
+          <button onclick="playNumber(5)">5</button><br>
+          <button onclick="playNumber(6)">6</button>
+          <button onclick="playNumber(7)">7</button>
+          <button onclick="playNumber(8)">8</button>
+          <button onclick="playNumber(9)">9</button>
+          <button onclick="playNumber(10)">10</button>
+        </div>
+      </div>
+
+      <!-- Fruits Game (10 Fruits) -->
+      <div class="game-card">
+        <div class="info">🍎 Learn Fruits</div>
+        <div>
+          <button onclick="playFruit('Apple')">🍎 Apple</button>
+          <button onclick="playFruit('Banana')">🍌 Banana</button>
+          <button onclick="playFruit('Orange')">🍊 Orange</button>
+          <button onclick="playFruit('Grapes')">🍇 Grapes</button>
+          <button onclick="playFruit('Strawberry')">🍓 Strawberry</button><br>
+          <button onclick="playFruit('Watermelon')">🍉 Watermelon</button>
+          <button onclick="playFruit('Pineapple')">🍍 Pineapple</button>
+          <button onclick="playFruit('Pear')">🍐 Pear</button>
+          <button onclick="playFruit('Peach')">🍑 Peach</button>
+          <button onclick="playFruit('Cherry')">🍒 Cherry</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Subscribe -->
+  <section class="subscribe">
+    <a href="https://www.youtube.com/@TinyKidsPlanet.9696" target="_blank">Subscribe on YouTube 🚀</a>
+  </section>
+
+</div>
+
+<footer>
+  © 2025 Tiny Kids Planet • Made with ❤️ for Kids
+</footer>
+
+<div class="music">
+  🎵 <audio controls loop>
+    <source src="kids-music.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+</div>
+
+<script>
+/* ===== Sounds ===== */
+const popSound = new Audio('pop.mp3');
+const clickSound = new Audio('click.mp3');
+
+/* ===== Balloon Game ===== */
+const canvas = document.getElementById('balloonCanvas');
+const ctx = canvas.getContext('2d');
+let x = 130, y = 200, score = 0;
+
+function drawBalloon() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.beginPath();
+  ctx.arc(x, y, 18, 0, Math.PI * 2);
+  ctx.fillStyle = '#ff5f6d';
+  ctx.fill();
+
+  y -= 2;
+  if (y < -20) {
+    y = 220;
+    x = Math.random() * 220 + 20;
+  }
+
+  requestAnimationFrame(drawBalloon);
+}
+
+drawBalloon();
+
+canvas.addEventListener('click', function (e) {
+  const rect = canvas.getBoundingClientRect();
+  const cx = e.clientX - rect.left;
+  const cy = e.clientY - rect.top;
+  const dist = Math.hypot(cx - x, cy - y);
+
+  if (dist < 20) {
+    popSound.play();
+    score++;
+    document.getElementById('score').innerText = score;
+    y = 220;
+    x = Math.random() * 220 + 20;
+  }
+});
+
+/* ===== Numbers ===== */
+function playNumber(num) {
+  clickSound.play();
+  const msg = new SpeechSynthesisUtterance(num.toString());
+  msg.lang = 'en-US';
+  speechSynthesis.speak(msg);
+}
+
+/* ===== Fruits ===== */
+function playFruit(name) {
+  clickSound.play();
+  const msg = new SpeechSynthesisUtterance(name);
+  msg.lang = 'en-US';
+  speechSynthesis.speak(msg);
+}
+</script>
+
+</body>
+</html>
